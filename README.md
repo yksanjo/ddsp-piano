@@ -1,4 +1,8 @@
 # DDSP-Piano: Differentiable Piano model for MIDI-to-Audio Performance Synthesis
+
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/) [![GitHub stars](https://img.shields.io/github/stars/yksanjo/ddsp-piano?style=social)](https://github.com/yksanjo/ddsp-piano/stargazers) [![GitHub forks](https://img.shields.io/github/forks/yksanjo/ddsp-piano.svg)](https://github.com/yksanjo/ddsp-piano/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/yksanjo/ddsp-piano.svg)](https://github.com/yksanjo/ddsp-piano/issues) [![Last commit](https://img.shields.io/github/last-commit/yksanjo/ddsp-piano.svg)](https://github.com/yksanjo/ddsp-piano/commits/main)
+
 | [**Audio Samples 🔈**](http://recherche.ircam.fr/anasyn/renault/DAFx22)
 | [**DAFx Conference Paper 📄**](https://dafx2020.mdw.ac.at/proceedings/papers/DAFx20in22_paper_48.pdf)
 | [**JAES Article 📄**](https://doi.org/10.17743/jaes.2022.0102) 
