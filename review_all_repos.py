@@ -151,6 +151,27 @@ class RepoReviewer:
                 import base64
                 decoded = base64.b64decode(readme_content).decode("utf-8")
                 analysis["has_badges"] = "img.shields.io" in decoded or "badge" in decoded.lower()
+                
+                # Check README quality
+                readme_lower = decoded.lower()
+                has_title = "# " in decoded or "## " in decoded
+                has_description = len(decoded.split("\n")) > 5  # Has some content
+                has_installation = "install" in readme_lower or "setup" in readme_lower or "getting started" in readme_lower
+                has_usage = "usage" in readme_lower or "example" in readme_lower or "how to" in readme_lower
+                
+                if not has_title:
+                    analysis["suggestions"].append("README should have a clear title (H1 heading)")
+                if not has_description:
+                    analysis["suggestions"].append("README should have a project description")
+                if not has_installation:
+                    analysis["suggestions"].append("README should include installation/setup instructions")
+                if not has_usage:
+                    analysis["suggestions"].append("README should include usage examples")
+                    
+                # Check for very short READMEs (likely placeholder)
+                if len(decoded.strip()) < 200:
+                    analysis["issues"].append("README is very short (likely a placeholder)")
+                    analysis["suggestions"].append("Expand README with proper documentation")
         except:
             analysis["issues"].append("No README.md found")
             analysis["suggestions"].append("Add a README.md file")
@@ -186,7 +207,8 @@ class RepoReviewer:
             not analysis["has_readme"] or
             not analysis["has_description"] or
             not analysis["has_topics"] or
-            (analysis["has_readme"] and not analysis["has_badges"])
+            (analysis["has_readme"] and not analysis["has_badges"]) or
+            len(analysis["suggestions"]) > 0
         )
         
         return analysis
@@ -251,48 +273,243 @@ class RepoReviewer:
             return False
     
     def _suggest_description(self, repo_info: Dict[str, Any]) -> str:
-        """Suggest a description based on repo info."""
-        name = repo_info.get("name", "")
+        """Suggest a description based on repo info with enhanced intelligence."""
+        name = repo_info.get("name", "").lower()
         language = repo_info.get("language", "")
         topics = repo_info.get("topics", [])
+        name_clean = name.replace('-', ' ').replace('_', ' ')
         
-        # Try to infer from name and topics
-        if "cli" in topics or "command-line" in topics:
-            return f"A command-line tool for {name.replace('-', ' ').replace('_', ' ')}"
-        elif "api" in topics:
-            return f"API for {name.replace('-', ' ').replace('_', ' ')}"
-        elif "web" in topics or "frontend" in topics:
-            return f"Web application: {name.replace('-', ' ').replace('_', ' ')}"
+        # Known repository patterns and descriptions
+        repo_patterns = {
+            # Financial Products
+            "agentguard": "Enterprise AI Agent Security & Governance Platform for Financial Institutions",
+            "codeshield-ai": "Secure Development Gateway for AI-Generated Code in Banking Systems",
+            "paymentsentinel": "Real-Time Transaction Defense System for Payment Processing",
+            "legacybridge-ai-gateway": "Secure Integration Layer for Legacy Core Banking Systems",
+            "modelwatch": "AI Integrity Monitoring Platform for Financial Services",
+            "fleetcommand": "Multi-Agent Orchestration Platform for Enterprise AI Systems",
+            "promptshield": "AI Agent Input Validation System for Secure Banking Applications",
+            "identityvault-agents": "Non-Human Identity & Access Management for AI Agents",
+            "supplychainguard": "AI Development Tool Security & Supply Chain Protection",
+            "complianceiq": "AI Governance & Regulatory Reporting Suite for Financial Institutions",
+            
+            # Quantum Demos
+            "quantum-coin-demo": "Quantum Superposition Demonstration - Flipping a Quantum Coin",
+            "quantum-twins-demo": "Quantum Entanglement Visualization - The Quantum Twins Experiment",
+            "grover-search-demo": "Grover's Quantum Search Algorithm Implementation",
+            "quantum-randomness-demo": "True Quantum Randomness Generation from Quantum Measurements",
+            "quantum-teleportation-demo": "Quantum Teleportation Protocol Demonstration",
+            "quantum-noise-demo": "Quantum Noise Comparison: Simulator vs Real Hardware",
+            "quantum-art-generator": "Quantum Art & Music Generator from Quantum Measurements",
+            
+            # Music & Audio
+            "ddsp-piano": "Differentiable Piano Model for MIDI-to-Audio Performance Synthesis",
+            "audio2strudel": "Convert audio files to Strudel music patterns",
+            "drum2strudel": "Convert drum patterns to Strudel music notation",
+            "strudel-music-lab": "Interactive music lab using Strudel patterns",
+            "music-agreement-analysis": "Music agreement and pattern analysis tools",
+            
+            # Community Tools
+            "pr-summarizer": "AI-powered Pull Request Summarization Tool",
+            "code-review-time-tracker": "Browser extension to track code review time and efficiency",
+            "meeting-action-extractor": "Extract action items from meeting transcripts using AI",
+            "postmortem-generator": "Automated incident post-mortem report generator",
+            "feature-flag-auditor": "Feature flag auditing and management tool",
+            "roadmap-dashboard": "Interactive roadmap visualization dashboard",
+            "dead-link-checker": "Automated broken link detection and reporting",
+            "api-rate-limit-monitor": "Monitor and alert on API rate limit usage",
+            "github-star-notifier": "Get notified when your repositories receive stars",
+            "github-repo-automation": "Automate GitHub repository setup: descriptions, topics, and badges",
+            "env-manager": "Environment variable management tool",
+            "git-hook-setup": "Automated git hooks setup and management",
+            "quick-scaffold": "Quick project scaffolding tool",
+            "mock-api-gen": "Mock API generator for testing and development",
+            "task-run": "Task runner utility for development workflows",
+            "saas-churn-predictor": "SaaS customer churn prediction using machine learning",
+            "competitor-price-tracker": "Track competitor pricing changes over time",
+            "social-media-scheduler": "Social media content scheduling and management",
+            "email-warmup-service": "Email deliverability warmup service",
+            "invoice-reminder-bot": "Automated invoice reminder bot",
+            "domain-expiration-monitor": "Monitor domain expiration dates and send alerts",
+            
+            # Other Projects
+            "strategyforge-ai": "Strategic planning and analysis AI platform",
+            "identity-studio": "Identity management and authentication studio",
+            "sap-whisper": "SAP system utilities and automation tools",
+        }
+        
+        # Check for exact match
+        if name in repo_patterns:
+            return repo_patterns[name]
+        
+        # Check for partial matches
+        for pattern, desc in repo_patterns.items():
+            if pattern in name or name in pattern:
+                return desc
+        
+        # Infer from name patterns
+        if "quantum" in name:
+            if "coin" in name:
+                return "Quantum Superposition Demonstration"
+            elif "twin" in name:
+                return "Quantum Entanglement Visualization"
+            elif "random" in name:
+                return "Quantum Randomness Generation"
+            elif "teleport" in name:
+                return "Quantum Teleportation Protocol"
+            elif "noise" in name:
+                return "Quantum Noise Analysis"
+            elif "art" in name or "generator" in name:
+                return "Quantum Art & Music Generator"
+            elif "grover" in name or "search" in name:
+                return "Grover's Quantum Search Algorithm"
+            else:
+                return f"Quantum Computing Demonstration: {name_clean.title()}"
+        
+        if "ddsp" in name or "piano" in name:
+            return "DDSP-Piano: Differentiable Piano Model for Audio Synthesis"
+        
+        if "strudel" in name:
+            return f"Strudel Music Pattern Tool: {name_clean.title()}"
+        
+        if "financial" in name or any(t in topics for t in ["banking", "fintech", "financial-services"]):
+            return f"Financial Services Tool: {name_clean.title()}"
+        
+        # Generic patterns
+        if "cli" in name or "command" in name:
+            return f"Command-line tool for {name_clean}"
+        elif "api" in name:
+            return f"API for {name_clean}"
+        elif "web" in name or "frontend" in name:
+            return f"Web application: {name_clean.title()}"
+        elif "automation" in name:
+            return f"Automation tool for {name_clean}"
+        elif "monitor" in name or "tracker" in name:
+            return f"Monitoring and tracking tool: {name_clean.title()}"
+        elif "generator" in name:
+            return f"Generator tool: {name_clean.title()}"
+        elif "manager" in name:
+            return f"Management tool: {name_clean.title()}"
         else:
-            return f"{name.replace('-', ' ').replace('_', ' ').title()} - {language or 'A'} project"
+            return f"{name_clean.title()} - {language or 'A'} project"
     
     def _suggest_topics(self, repo_info: Dict[str, Any]) -> List[str]:
-        """Suggest topics based on repo info."""
+        """Suggest topics based on repo info with enhanced intelligence."""
         topics = []
         language = repo_info.get("language", "").lower()
         name = repo_info.get("name", "").lower()
         
-        # Add language
-        if language:
-            topics.append(language)
+        # Known repository topic mappings
+        repo_topics = {
+            # Financial Products
+            "agentguard": ["financial-services", "ai-security", "banking", "regulatory-compliance", 
+                          "enterprise-software", "ai-governance", "cybersecurity", "fintech", 
+                          "g-sib", "agentic-ai", "security-monitoring", "siem", "compliance"],
+            "codeshield-ai": ["financial-services", "ai-security", "banking", "devsecops", 
+                             "code-security", "static-analysis", "enterprise-software", "fintech"],
+            "paymentsentinel": ["financial-services", "ai-security", "banking", "fraud-prevention", 
+                               "payment-security", "transaction-monitoring", "fintech", "cybersecurity"],
+            "legacybridge-ai-gateway": ["financial-services", "ai-security", "banking", "core-banking", 
+                                       "legacy-systems", "api-gateway", "enterprise-software", "fintech"],
+            "modelwatch": ["financial-services", "ai-security", "banking", "ml-ops", "model-validation", 
+                          "model-risk", "ai-governance", "fintech"],
+            "fleetcommand": ["financial-services", "ai-security", "banking", "orchestration", 
+                            "multi-agent", "coordination", "enterprise-software", "agentic-ai"],
+            "promptshield": ["financial-services", "ai-security", "banking", "prompt-injection", 
+                            "input-validation", "waf", "cybersecurity", "fintech"],
+            "identityvault-agents": ["financial-services", "ai-security", "banking", "iam", 
+                                     "identity-management", "access-control", "enterprise-software"],
+            "supplychainguard": ["financial-services", "ai-security", "banking", "supply-chain-security", 
+                                "sbom", "dependency-scanning", "devsecops", "cybersecurity"],
+            "complianceiq": ["financial-services", "ai-security", "banking", "regulatory-reporting", 
+                            "compliance", "governance", "g-sib", "enterprise-software"],
+            
+            # Quantum Demos
+            "quantum-coin-demo": ["quantum-computing", "superposition", "qiskit", "quantum-mechanics", 
+                                 "education", "demo"],
+            "quantum-twins-demo": ["quantum-computing", "entanglement", "qiskit", "quantum-mechanics", 
+                                  "education", "demo"],
+            "grover-search-demo": ["quantum-computing", "grover-algorithm", "qiskit", "quantum-algorithms", 
+                                  "education", "demo"],
+            "quantum-randomness-demo": ["quantum-computing", "randomness", "qiskit", "quantum-mechanics", 
+                                       "cryptography", "education"],
+            "quantum-teleportation-demo": ["quantum-computing", "teleportation", "qiskit", "quantum-mechanics", 
+                                          "education", "demo"],
+            "quantum-noise-demo": ["quantum-computing", "noise", "qiskit", "quantum-hardware", 
+                                  "education", "demo"],
+            "quantum-art-generator": ["quantum-computing", "art", "music", "qiskit", "creative", 
+                                      "generator", "demo"],
+            
+            # Music & Audio
+            "ddsp-piano": ["audio-synthesis", "ddsp", "piano", "music", "machine-learning", 
+                          "tensorflow", "maestro"],
+            "audio2strudel": ["audio", "strudel", "music", "conversion", "pattern"],
+            "drum2strudel": ["drums", "strudel", "music", "conversion", "pattern"],
+            "strudel-music-lab": ["strudel", "music", "interactive", "lab", "pattern"],
+            "music-agreement-analysis": ["music", "analysis", "pattern", "agreement"],
+            
+            # Community Tools
+            "pr-summarizer": ["github", "pull-requests", "ai", "automation", "developer-tools"],
+            "code-review-time-tracker": ["github", "code-review", "productivity", "browser-extension", 
+                                        "developer-tools"],
+            "meeting-action-extractor": ["ai", "meetings", "automation", "nlp", "productivity"],
+            "postmortem-generator": ["incident-management", "automation", "devops", "documentation"],
+            "feature-flag-auditor": ["feature-flags", "audit", "devops", "developer-tools"],
+            "roadmap-dashboard": ["roadmap", "visualization", "project-management", "streamlit"],
+            "dead-link-checker": ["automation", "testing", "quality-assurance", "seo"],
+            "api-rate-limit-monitor": ["api", "monitoring", "devops", "observability"],
+            "github-star-notifier": ["github", "notifications", "automation", "developer-tools"],
+            "github-repo-automation": ["github", "automation", "developer-tools", "ci-cd"],
+            "env-manager": ["environment-variables", "devops", "configuration", "developer-tools"],
+            "git-hook-setup": ["git", "hooks", "automation", "developer-tools"],
+            "quick-scaffold": ["scaffolding", "templates", "developer-tools", "productivity"],
+            "mock-api-gen": ["api", "mocking", "testing", "developer-tools"],
+            "task-run": ["task-runner", "automation", "developer-tools", "productivity"],
+        }
         
-        # Infer from name
-        if "cli" in name or "command" in name:
-            topics.append("cli")
-        if "api" in name:
-            topics.append("api")
-        if "web" in name or "frontend" in name:
-            topics.append("web")
-        if "automation" in name:
-            topics.append("automation")
-        if "tool" in name:
-            topics.append("tools")
+        # Check for exact match
+        if name in repo_topics:
+            topics.extend(repo_topics[name])
+        else:
+            # Add language
+            if language:
+                topics.append(language)
+            
+            # Infer from name patterns
+            if "quantum" in name:
+                topics.extend(["quantum-computing", "qiskit", "education"])
+            elif "ddsp" in name or "piano" in name or "audio" in name or "music" in name:
+                topics.extend(["audio", "music", "machine-learning"])
+            elif "financial" in name or "banking" in name or "payment" in name:
+                topics.extend(["financial-services", "fintech", "banking"])
+            elif "ai" in name or "agent" in name:
+                topics.extend(["ai", "machine-learning", "automation"])
+            
+            # Generic patterns
+            if "cli" in name or "command" in name:
+                topics.append("cli")
+            if "api" in name:
+                topics.append("api")
+            if "web" in name or "frontend" in name:
+                topics.append("web")
+            if "automation" in name:
+                topics.append("automation")
+            if "tool" in name or "manager" in name or "generator" in name:
+                topics.append("tools")
+            if "monitor" in name or "tracker" in name:
+                topics.append("monitoring")
+            if "github" in name:
+                topics.append("github")
+            if "docker" in name:
+                topics.append("docker")
+            
+            # Add common topics if none found
+            if not topics:
+                topics = ["open-source"]
         
-        # Add common topics
-        if not topics:
-            topics = ["open-source"]
-        
-        return topics[:5]  # Limit to 5 topics
+        # Remove duplicates and limit
+        topics = list(dict.fromkeys(topics))  # Preserve order, remove duplicates
+        return topics[:10]  # Limit to 10 topics (GitHub allows up to 20)
     
     def generate_report(self, analyses: List[Dict[str, Any]]) -> str:
         """Generate a summary report."""

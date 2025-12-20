@@ -4,6 +4,12 @@
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+## 📸 Dashboard Preview
+
+![Oracle Security Auditor Dashboard](assets/dashboard-screenshot.svg)
+
+*Security dashboard showing vulnerabilities, compliance status, and security recommendations.*
+
 ## 🎯 Overview
 
 Security and compliance solution:

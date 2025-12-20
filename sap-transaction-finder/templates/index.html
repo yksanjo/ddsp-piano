@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAP Transaction Code Finder</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 3em; margin-bottom: 10px; }
+        .search-box {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .filter-select {
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+            flex: 1;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .result-item {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .result-item:hover {
+            background: #f9fafb;
+        }
+        .result-code {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+        .result-desc {
+            color: #666;
+            margin-top: 5px;
+        }
+        .result-meta {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #999;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+        .badge-module {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 SAP Transaction Code Finder</h1>
+            <p>Find SAP transactions instantly</p>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search by description, code, or keywords...">
+            <div class="filters">
+                <select class="filter-select" id="moduleFilter">
+                    <option value="">All Modules</option>
+                </select>
+            </div>
+            <div class="results" id="results"></div>
+        </div>
+    </div>
+    
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const moduleFilter = document.getElementById('moduleFilter');
+        const resultsDiv = document.getElementById('results');
+        
+        // Load modules
+        fetch('/api/modules')
+            .then(r => r.json())
+            .then(data => {
+                data.modules.forEach(module => {
+                    const option = document.createElement('option');
+                    option.value = module;
+                    option.textContent = module;
+                    moduleFilter.appendChild(option);
+                });
+            });
+        
+        function search() {
+            const query = searchInput.value.trim();
+            const module = moduleFilter.value;
+            
+            if (query.length < 2) {
+                resultsDiv.innerHTML = '';
+                return;
+            }
+            
+            fetch(`/api/search?q=${encodeURIComponent(query)}&module=${module}`)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.results.length === 0) {
+                        resultsDiv.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">No results found</div>';
+                        return;
+                    }
+                    
+                    resultsDiv.innerHTML = data.results.map(tx => `
+                        <div class="result-item">
+                            <div class="result-code">${tx.code}</div>
+                            <div class="result-desc">${tx.description}</div>
+                            <div class="result-meta">
+                                <span class="badge badge-module">${tx.module}</span>
+                                <span>${tx.type}</span>
+                                ${tx.category ? `<span>• ${tx.category}</span>` : ''}
+                            </div>
+                        </div>
+                    `).join('');
+                });
+        }
+        
+        searchInput.addEventListener('input', search);
+        moduleFilter.addEventListener('change', search);
+    </script>
+</body>
+</html>
+
