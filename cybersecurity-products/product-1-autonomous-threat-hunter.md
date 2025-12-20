@@ -220,6 +220,28 @@ Traditional security tools fail in the AI agent era:
 - Executive reporting for compliance
 - SOC analyst productivity tools
 
+### 5.1. UI/UX Screenshots & Mockups
+
+**Main Dashboard View:**
+![Main Dashboard](assets/product-1/dashboard-main.png)
+*Single pane of glass showing active threats, agent inventory, and real-time metrics. Top section displays key KPIs (MTTD, MTTR, threat detection rate) with color-coded status indicators. Left sidebar navigation for quick access to different views.*
+
+**Threat Investigation Workspace:**
+![Investigation Workspace](assets/product-1/investigation-workspace.png)
+*Detailed investigation view showing timeline of events, evidence collection, and root cause analysis. Interactive graph visualization of attack patterns and agent relationships. Right panel displays investigation playbook steps and automated actions taken.*
+
+**Agent Inventory & Risk Scoring:**
+![Agent Inventory](assets/product-1/agent-inventory.png)
+*Comprehensive list of all AI agents with health status, risk scores, and recent activity. Color-coded risk indicators (green/yellow/red). Quick filters for agent type, risk level, and cloud environment. Click-through to detailed agent behavior profiles.*
+
+**Response Actions & Policies:**
+![Response Actions](assets/product-1/response-actions.png)
+*Real-time view of automated response actions with effectiveness metrics. Policy configuration interface showing when actions are triggered. Historical response success rates and optimization recommendations.*
+
+**Executive Dashboard:**
+![Executive Dashboard](assets/product-1/executive-dashboard.png)
+*High-level executive view with ROI metrics, cost savings, and compliance status. Trend charts showing threat reduction over time. One-click report generation for board presentations.*
+
 ### 6. Integration Ecosystem
 
 **What it does:**

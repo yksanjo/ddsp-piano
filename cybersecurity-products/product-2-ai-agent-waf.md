@@ -308,6 +308,32 @@ AI agents face unique security threats that traditional security tools cannot ad
 - Demonstrate security maturity to executives/regulators
 - Stay ahead of attackers
 
+### 8.1. UI/UX Screenshots & Mockups
+
+**Security Dashboard - Attack Overview:**
+![Security Dashboard](assets/product-2/dashboard-main.png)
+*Real-time security dashboard showing blocked attacks, attack trends, and threat patterns. Top metrics display total attacks blocked, false positive rate, and fraud losses prevented. Interactive timeline showing attack volume over time with drill-down capability.*
+
+**Input Analysis & Risk Scoring:**
+![Input Analysis](assets/product-2/input-analysis.png)
+*Detailed view of input analysis showing risk scores, detected patterns, and blocking decisions. Real-time stream of analyzed inputs with color-coded risk indicators. Expandable details showing why each input was flagged or blocked.*
+
+**Attack Pattern Database:**
+![Attack Patterns](assets/product-2/attack-patterns.png)
+*Comprehensive database of known attack patterns with categories (direct injection, encoding attacks, context manipulation). Search and filter capabilities. Pattern details showing examples, detection rules, and mitigation strategies.*
+
+**User Behavior Analytics:**
+![Behavior Analytics](assets/product-2/behavior-analytics.png)
+*Behavioral anomaly detection dashboard showing user risk scores, session patterns, and unusual behavior indicators. Heat maps showing attack frequency by time of day and geographic location. User risk scoring with historical trends.*
+
+**Incident Investigation & Forensics:**
+![Incident Investigation](assets/product-2/incident-investigation.png)
+*Forensic investigation workspace with complete conversation logs, attack timeline, and evidence collection. Interactive conversation viewer showing blocked inputs and agent responses. Export capabilities for compliance and legal requirements.*
+
+**Policy Configuration Interface:**
+![Policy Configuration](assets/product-2/policy-config.png)
+*Visual policy builder for creating custom blocking rules and boundary enforcement policies. Drag-and-drop interface for policy composition. Real-time policy testing with sample inputs. Policy versioning and rollback capabilities.*
+
 ## Technical Architecture
 
 ### System Components

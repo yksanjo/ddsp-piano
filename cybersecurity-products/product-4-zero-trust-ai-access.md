@@ -331,6 +331,40 @@ Traditional zero-trust solutions fail for AI agents:
 - Continuous compliance monitoring
 - Demonstrate compliance to auditors/regulators
 
+### 8.1. UI/UX Screenshots & Mockups
+
+**Zero-Trust Access Dashboard:**
+![Access Dashboard](assets/product-4/dashboard-main.png)
+*Unified dashboard showing all AI agent machine identities, active access sessions, and risk scores. Real-time access monitoring with color-coded risk indicators. Top metrics display total identities, access attempts, and policy compliance rate. Quick access to high-risk agents and anomalies.*
+
+**Agent Identity Inventory:**
+![Agent Inventory](assets/product-4/agent-inventory.png)
+*Comprehensive inventory of all machine identities with health status, certificate expiration, and trust scores. Search and filter by agent type, risk level, and cloud environment. Identity lifecycle status (provisioned, active, expired, revoked). One-click identity rotation and revocation.*
+
+**Context-Aware Authentication Flow:**
+![Authentication Flow](assets/product-4/auth-flow.png)
+*Visual authentication flow diagram showing context-aware decision making. Real-time authentication requests with risk scoring breakdown. Multi-factor authentication status and behavioral analysis indicators. Authentication success/failure rates and latency metrics.*
+
+**Dynamic Authorization Policies:**
+![Authorization Policies](assets/product-4/authorization-policies.png)
+*Policy configuration interface for context-aware authorization rules. Visual policy builder showing action context, data context, and time-based restrictions. Real-time policy evaluation with test scenarios. Policy effectiveness metrics and optimization recommendations.*
+
+**Behavioral Profiling & Anomaly Detection:**
+![Behavioral Profiling](assets/product-4/behavioral-profiling.png)
+*Agent behavior profiling dashboard showing normal patterns, baselines, and anomalies. Interactive charts displaying access patterns, action frequency, and data access trends. Anomaly detection alerts with behavioral deviation indicators. Trust score calculation and historical trends.*
+
+**Continuous Verification & Monitoring:**
+![Continuous Verification](assets/product-4/continuous-verification.png)
+*Real-time monitoring view showing active agent sessions with continuous verification status. Session risk scores updated in real-time. Automated response actions (isolate, revoke, escalate) with effectiveness tracking. Session timeline with all authentication and authorization events.*
+
+**Access Analytics & Trends:**
+![Access Analytics](assets/product-4/access-analytics.png)
+*Comprehensive analytics dashboard showing access patterns, trends, and insights. Heat maps showing access frequency by time, location, and resource type. User risk scoring trends and anomaly patterns. Compliance metrics and policy effectiveness analysis.*
+
+**Compliance & Audit Reporting:**
+![Compliance Reports](assets/product-4/compliance-reports.png)
+*Automated compliance report generation with pre-built templates for SOC 2, ISO 27001, HIPAA, PCI-DSS. Interactive compliance framework mapping showing policy coverage. Evidence collection interface with one-click export. Audit trail viewer with search and filter capabilities.*
+
 ## Technical Architecture
 
 ### System Components

@@ -336,6 +336,36 @@ Enterprises face critical challenges managing security policies across multi-clo
 - Leverage existing investments
 - Unified security operations
 
+### 7.1. UI/UX Screenshots & Mockups
+
+**Policy Management Dashboard:**
+![Policy Dashboard](assets/product-3/dashboard-main.png)
+*Unified dashboard showing all security policies across AWS, Azure, and GCP. Multi-cloud policy compliance status with color-coded indicators. Policy violation alerts with real-time updates. Quick filters by cloud, policy type, and compliance status.*
+
+**Policy Definition Interface (Policy-as-Code):**
+![Policy Definition](assets/product-3/policy-definition.png)
+*Visual policy builder with code editor for policy-as-code definition. Syntax highlighting for Rego policies. Policy templates library with one-click deployment. Real-time policy validation and testing interface. Version control integration showing policy history.*
+
+**Multi-Cloud Policy Deployment:**
+![Policy Deployment](assets/product-3/policy-deployment.png)
+*Deployment interface showing policy translation to cloud-native formats (CloudFormation, ARM, Terraform). Deployment status across all clouds with success/failure indicators. Rollback capabilities with one-click revert. Deployment logs and audit trail.*
+
+**Policy Compliance & Violations:**
+![Policy Compliance](assets/product-3/policy-compliance.png)
+*Compliance dashboard showing policy violations across all clouds. Real-time violation detection with drill-down to resource details. Auto-remediation status and manual remediation workflows. Compliance scorecards by framework (SOC 2, ISO 27001, HIPAA).*
+
+**AI Agent Policy Configuration:**
+![Agent Policies](assets/product-3/agent-policies.png)
+*Specialized interface for AI agent-specific policies. Agent behavior policies, data access policies, and action limits. Visual policy builder with drag-and-drop rules. Agent compliance monitoring with behavioral baselines.*
+
+**Policy Drift Detection:**
+![Policy Drift](assets/product-3/policy-drift.png)
+*Policy drift visualization showing configuration changes over time. Timeline view of policy changes with who/what/when details. Drift severity indicators and auto-remediation options. Historical drift trends and patterns.*
+
+**Compliance Reporting:**
+![Compliance Reports](assets/product-3/compliance-reports.png)
+*Automated compliance report generation with one-click export. Pre-built templates for SOC 2, ISO 27001, HIPAA, PCI-DSS. Interactive compliance framework mapping. Evidence collection and audit trail export.*
+
 ## Technical Architecture
 
 ### System Components
