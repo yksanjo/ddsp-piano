@@ -1,0 +1,43 @@
+[
+  {
+    "id": "missing-ssi",
+    "pattern": "missing ssi",
+    "patterns": ["missing ssi", "ssi not found", "settlement instructions missing"],
+    "message": "Missing Settlement Instructions (SSI). You need to configure SSI for this counterparty.",
+    "link": "/Adenza/static-data/counterparty/ssi",
+    "command": "Navigate to: Static Data > Counterparty > SSI Configuration"
+  },
+  {
+    "id": "invalid-holiday-calendar",
+    "pattern": "invalid holiday calendar",
+    "patterns": ["invalid holiday calendar", "holiday calendar not found", "calendar missing"],
+    "message": "Invalid or missing holiday calendar. Configure holiday calendar for this currency pair.",
+    "link": "/Adenza/static-data/holiday-calendar",
+    "command": "Navigate to: Static Data > Holiday Calendar > Add Calendar"
+  },
+  {
+    "id": "missing-legal-entity",
+    "pattern": "missing legal entity",
+    "patterns": ["missing legal entity", "legal entity not found", "lei missing"],
+    "message": "Missing Legal Entity information. Add LEI code and legal entity details.",
+    "link": "/Adenza/static-data/legal-entity",
+    "command": "Navigate to: Static Data > Legal Entity > Add Entity"
+  },
+  {
+    "id": "invalid-book",
+    "pattern": "invalid book",
+    "patterns": ["invalid book", "book not found", "book missing"],
+    "message": "Invalid or missing book. Verify book configuration in Static Data.",
+    "link": "/Adenza/static-data/book",
+    "command": "Navigate to: Static Data > Book > Verify Configuration"
+  },
+  {
+    "id": "insufficient-permissions",
+    "pattern": "insufficient permissions",
+    "patterns": ["insufficient permissions", "access denied", "permission denied"],
+    "message": "Insufficient permissions. Contact your administrator to grant required access.",
+    "link": "/Adenza/admin/user-permissions",
+    "command": "Contact: System Administrator"
+  }
+]
+

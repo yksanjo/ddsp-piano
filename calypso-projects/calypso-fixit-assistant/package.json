@@ -1,0 +1,27 @@
+{
+  "name": "calypso-fixit-assistant",
+  "version": "1.0.0",
+  "description": "Smart Fix-It Assistant browser extension for Calypso trade errors",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "npm run build:extension",
+    "build:extension": "node scripts/build-extension.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "calypso",
+    "browser-extension",
+    "error-handling",
+    "trading",
+    "financial-services"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
+
+
+

@@ -1,0 +1,36 @@
+{
+  "name": "calypso-risk-visualization",
+  "version": "1.0.0",
+  "description": "Custom risk reporting visualization for Calypso trading platform",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "jest"
+  },
+  "keywords": [
+    "calypso",
+    "risk",
+    "visualization",
+    "d3",
+    "trading",
+    "financial-services"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "d3": "^7.8.5",
+    "chart.js": "^4.4.0",
+    "react-chartjs-2": "^5.2.0",
+    "axios": "^1.6.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
+
+
+

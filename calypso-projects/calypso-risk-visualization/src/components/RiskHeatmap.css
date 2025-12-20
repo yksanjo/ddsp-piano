@@ -1,0 +1,32 @@
+.risk-heatmap {
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.risk-heatmap h3 {
+  margin-top: 0;
+}
+
+.cell {
+  cursor: pointer;
+}
+
+.cell:hover {
+  opacity: 0.8;
+}
+
+.risk-tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+
+
