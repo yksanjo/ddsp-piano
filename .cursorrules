@@ -1,0 +1,37 @@
+# Cursor AI Rules for DDSP-Piano Repository
+
+## Project Scope
+This repository is EXCLUSIVELY for DDSP-Piano music synthesis code. 
+- Focus: MIDI-to-Audio piano synthesis using DDSP
+- Domain: Music, audio processing, neural audio synthesis
+- Technology: Python, TensorFlow, DDSP library
+
+## What BELONGS in this repository:
+- `ddsp_piano/` - Core DDSP-Piano package
+- `assets/` - Project assets (diagrams, images, CSV files)
+- Python scripts for synthesis, training, evaluation
+- Configuration files (`.gin`, `requirements.txt`, `pyproject.toml`)
+- Documentation related to DDSP-Piano
+
+## What DOES NOT belong:
+- Security/cybersecurity projects
+- SaaS product documentation
+- Web applications (React, Next.js, TypeScript projects)
+- Business/product management tools
+- Any project unrelated to music/audio synthesis
+
+## Guidelines for Cursor AI:
+1. When creating new files, verify they relate to DDSP-Piano music synthesis
+2. Do NOT create directories for unrelated projects
+3. If asked to create something unrelated, suggest creating a separate repository
+4. Always check the repository context before adding files
+5. When in doubt, ask the user if the file/project belongs in this repository
+
+## File Naming Patterns to Watch For:
+- Security projects: `*security*`, `*pentest*`, `*attack*`, `*vpc*`, `*guardian*`
+- SaaS products: `*saas*`, `*product*`, `*alternative*`
+- Web apps: `*board*`, `*dashboard*`, `*workos*`, `*flowboard*`
+- Business tools: `*business*`, `*crm*`, `*analytics*`
+
+If you see these patterns, STOP and confirm with the user before proceeding.
+
