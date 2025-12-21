@@ -1,0 +1,200 @@
+version: 2
+updates:
+  # Python dependencies (main project)
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+
+  # Python dependencies (attack-surface-ai)
+  - package-ecosystem: "pip"
+    directory: "/attack-surface-ai"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+      - "attack-surface-ai"
+
+  # Python dependencies (workos ml-services)
+  - package-ecosystem: "pip"
+    directory: "/workos/ml-services"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+      - "workos"
+
+  # npm dependencies (logcopilot backend)
+  - package-ecosystem: "npm"
+    directory: "/logcopilot/backend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "logcopilot"
+
+  # npm dependencies (logcopilot frontend)
+  - package-ecosystem: "npm"
+    directory: "/logcopilot/frontend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "logcopilot"
+
+  # npm dependencies (pentestgpt backend)
+  - package-ecosystem: "npm"
+    directory: "/pentestgpt/backend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "pentestgpt"
+
+  # npm dependencies (pentestgpt frontend)
+  - package-ecosystem: "npm"
+    directory: "/pentestgpt/frontend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "pentestgpt"
+
+  # npm dependencies (surfaceai backend)
+  - package-ecosystem: "npm"
+    directory: "/surfaceai/backend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "surfaceai"
+
+  # npm dependencies (surfaceai frontend)
+  - package-ecosystem: "npm"
+    directory: "/surfaceai/frontend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "surfaceai"
+
+  # npm dependencies (vpc-guardian backend)
+  - package-ecosystem: "npm"
+    directory: "/vpc-guardian/backend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "vpc-guardian"
+
+  # npm dependencies (vpc-guardian frontend)
+  - package-ecosystem: "npm"
+    directory: "/vpc-guardian/frontend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "vpc-guardian"
+
+  # npm dependencies (workos backend)
+  - package-ecosystem: "npm"
+    directory: "/workos/backend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "workos"
+
+  # npm dependencies (workos frontend)
+  - package-ecosystem: "npm"
+    directory: "/workos/frontend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "workos"
+
+  # npm dependencies (smb-security-suite backend)
+  - package-ecosystem: "npm"
+    directory: "/smb-security-suite/backend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "smb-security-suite"
+
+  # npm dependencies (smb-security-suite frontend)
+  - package-ecosystem: "npm"
+    directory: "/smb-security-suite/frontend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "smb-security-suite"
+
+  # npm dependencies (smb-security-suite-unified backend)
+  - package-ecosystem: "npm"
+    directory: "/smb-security-suite-unified/backend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "smb-security-suite-unified"
+
+  # npm dependencies (smb-security-suite-unified frontend)
+  - package-ecosystem: "npm"
+    directory: "/smb-security-suite-unified/frontend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "smb-security-suite-unified"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "dependencies"
+      - "github-actions"
+

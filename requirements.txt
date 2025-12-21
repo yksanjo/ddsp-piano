@@ -1,0 +1,22 @@
+# DDSP-Piano Core Dependencies
+# Main dependency - DDSP library
+ddsp>=3.2.0,<4.0.0
+
+# TensorFlow (required by DDSP)
+tensorflow>=2.8.0,<3.0.0
+
+# Audio processing
+numpy>=1.19.0
+scipy>=1.7.0
+
+# MIDI processing
+mido>=1.2.0
+pretty_midi>=0.2.9
+
+# Development dependencies (optional, install with: pip install -r requirements-dev.txt)
+# black>=22.0.0
+# flake8>=4.0.0
+# isort>=5.10.0
+# pytest>=7.0.0
+# mypy>=0.950
+
