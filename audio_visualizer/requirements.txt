@@ -1,0 +1,8 @@
+flask>=2.0.0
+numpy>=1.19.0
+soundfile>=0.10.0
+tensorflow>=2.8.0
+ddsp>=3.2.0
+gin-config>=0.5.0
+mido>=1.2.0
+pretty-midi>=0.2.9

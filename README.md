@@ -134,7 +134,6 @@ docker run -v $(pwd)/input:/input -v $(pwd)/output:/output ddsp-piano \
 - **[Contributing Guidelines](CONTRIBUTING.md)** - How to contribute to the project
 - **[Code of Conduct](CODE_OF_CONDUCT.md)** - Community guidelines
 - **[Security Policy](SECURITY.md)** - Security reporting and best practices
-- **[Projects Overview](PROJECTS.md)** - All projects in this repository
 
 ### Research Papers
 - [**Audio Samples 🔈**](http://recherche.ircam.fr/anasyn/renault/DAFx22)

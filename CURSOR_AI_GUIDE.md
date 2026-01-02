@@ -60,7 +60,8 @@ Create a pre-commit hook to check for unrelated files:
 # .git/hooks/pre-commit
 
 # Check for unrelated project directories
-for dir in attack-surface flowboard workos saas-products; do
+# Add any directories that should NOT be in this DDSP-Piano repository
+for dir in agentic-automation-platform etl-prompts financial-data-sharing health-wellness-app logcopilot ohio-childcare-map pentestgpt saas-products smb-security-suite surfaceai vpc-guardian; do
   if [ -d "$dir" ]; then
     echo "ERROR: Unrelated project directory found: $dir"
     echo "This repository is for DDSP-Piano only!"
@@ -108,4 +109,14 @@ The `.cursorrules` file I created will help, but the best practice is:
 2. **Check `git status`** before committing
 3. **Be explicit** with Cursor AI about project scope
 4. **Review changes** before pushing to GitHub
+
+
+
+
+
+
+
+
+
+
 
