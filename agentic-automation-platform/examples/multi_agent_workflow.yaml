@@ -1,0 +1,42 @@
+id: multi_agent_workflow
+name: Multi-Agent Research Workflow
+version: 1.0.0
+description: A workflow that uses multiple agents to research and summarize information
+
+tasks:
+  - id: research_task
+    name: Research Topic
+    type: agent
+    agent_id: researcher
+    inputs:
+      task: "Research the topic: $input.topic"
+
+  - id: summarize_task
+    name: Summarize Findings
+    type: agent
+    agent_id: summarizer
+    inputs:
+      task: "Summarize the research findings: $research_task.result"
+
+  - id: format_task
+    name: Format Output
+    type: agent
+    agent_id: formatter
+    inputs:
+      task: "Format the summary in markdown: $summarize_task.result"
+
+dependencies:
+  summarize_task:
+    - research_task
+  format_task:
+    - summarize_task
+
+retry:
+  max_retries: 3
+  initial_delay: 1.0
+  max_delay: 60.0
+
+error_handling:
+  on_error: retry
+  error_notification: "admin@example.com"
+

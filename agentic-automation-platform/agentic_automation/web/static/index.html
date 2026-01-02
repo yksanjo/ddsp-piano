@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic AI Automation Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            background: #1e293b;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            color: #60a5fa;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #94a3b8;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: #1e293b;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+        
+        .card h2 {
+            color: #60a5fa;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .metric {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #34d399;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .status.running {
+            background: #065f46;
+            color: #34d399;
+        }
+        
+        .status.completed {
+            background: #1e3a8a;
+            color: #60a5fa;
+        }
+        
+        .status.failed {
+            background: #7f1d1d;
+            color: #f87171;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        
+        th {
+            color: #94a3b8;
+            font-weight: 600;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .btn:hover {
+            background: #2563eb;
+        }
+        
+        .btn-secondary {
+            background: #475569;
+        }
+        
+        .btn-secondary:hover {
+            background: #334155;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Agentic AI Automation Platform</h1>
+            <p class="subtitle">Production-ready automation for the agentic AI era</p>
+        </header>
+        
+        <div class="dashboard">
+            <div class="card">
+                <h2>Active Executions</h2>
+                <div class="metric" id="active-executions">0</div>
+                <p style="color: #94a3b8; margin-top: 0.5rem;">Currently running</p>
+            </div>
+            
+            <div class="card">
+                <h2>Total Executions</h2>
+                <div class="metric" id="total-executions">0</div>
+                <p style="color: #94a3b8; margin-top: 0.5rem;">All time</p>
+            </div>
+            
+            <div class="card">
+                <h2>Success Rate</h2>
+                <div class="metric" id="success-rate">0%</div>
+                <p style="color: #94a3b8; margin-top: 0.5rem;">Last 24 hours</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Recent Executions</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Started</th>
+                        <th>Duration</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="executions-table">
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: #94a3b8;">
+                            No executions yet
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        // Placeholder for API integration
+        async function loadMetrics() {
+            try {
+                const response = await fetch('/api/v1/metrics');
+                const data = await response.json();
+                // Update UI with metrics
+            } catch (error) {
+                console.error('Error loading metrics:', error);
+            }
+        }
+        
+        // Refresh metrics every 5 seconds
+        setInterval(loadMetrics, 5000);
+        loadMetrics();
+    </script>
+</body>
+</html>
+

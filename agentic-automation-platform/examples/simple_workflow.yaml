@@ -1,0 +1,22 @@
+id: simple_workflow
+name: Simple Agent Workflow
+version: 1.0.0
+description: A simple workflow with a single agent task
+
+tasks:
+  - id: task1
+    name: Process Request
+    type: agent
+    agent_id: assistant
+    inputs:
+      task: "Process the user request: $input.request"
+
+dependencies: {}
+
+retry:
+  max_retries: 3
+  initial_delay: 1.0
+
+error_handling:
+  on_error: fail
+
